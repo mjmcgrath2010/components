@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useStepper } from "../context";
 
-export const StepperSteps = function ({ children }) {
+export const StepperSteps = ({ children }) => {
   const { currentStep, steps, setSteps } = useStepper();
 
   useEffect(() => {
@@ -11,6 +11,7 @@ export const StepperSteps = function ({ children }) {
       })
       .map((step) => step.props);
     setSteps(stepperSteps);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setSteps]);
 
   return (

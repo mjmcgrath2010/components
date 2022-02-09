@@ -28,53 +28,55 @@ const Button = styled.button`
 `;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Wrapper = () => {
-  const { incrementCurrentStep, decrementCurrentStep } = useStepper();
+const ExampleStepper = () => {
+  const { incrementCurrentStep, decrementCurrentStep, setStepCompleted } =
+    useStepper();
   return (
     <Stepper>
       <Stepper.Steps>
-        <Stepper.Step id="first" name="Step 1">
+        <Stepper.Step id="first" name="Business Info">
           <StepBody>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>This is step 1</p>
             <div>
               <Button onClick={incrementCurrentStep}>Next step</Button>
+              <Button onClick={() => setStepCompleted("first")}>
+                Complete Step
+              </Button>
             </div>
           </StepBody>
         </Stepper.Step>
-        <Stepper.Step id="second" name="Step 2">
+        <Stepper.Step id="second" name="Branding">
           <StepBody>
-            <p>
-              Ad alias debitis dolore, doloribus ducimus, eaque illum ipsum
-              laboriosam libero magnam.
-            </p>
+            <p>this is step 2</p>
             <div>
               <Button onClick={decrementCurrentStep}>Previous step</Button>
               <Button onClick={incrementCurrentStep}>Next step</Button>
-            </div>{" "}
+              <Button onClick={() => setStepCompleted("second")}>
+                Complete Step
+              </Button>
+            </div>
           </StepBody>
         </Stepper.Step>
-        <Stepper.Step id="third" name="Step 3">
+        <Stepper.Step id="third" name="Goal">
           <StepBody>
-            <p>
-              Molestiae nihil nulla odio repellendus rerum similique suscipit
-              unde veniam!
-            </p>
+            <p>this is step 3</p>
             <div>
               <Button onClick={decrementCurrentStep}>Previous step</Button>
               <Button onClick={incrementCurrentStep}>Next step</Button>
-            </div>{" "}
+              <Button onClick={() => setStepCompleted("third")}>
+                Complete Step
+              </Button>
+            </div>
           </StepBody>
         </Stepper.Step>
-        <Stepper.Step id="forth" name="Step 4">
+        <Stepper.Step id="forth" name="Preview">
           <StepBody>
-            <p>
-              Accusamus alias asperiores beatae dolores et expedita molestias
-              nihil tempora?
-            </p>
+            <p>this is step 4</p>
             <div>
               <Button onClick={decrementCurrentStep}>Previous step</Button>
               <Button onClick={incrementCurrentStep}>Next step</Button>
-            </div>{" "}
+              <Button onClick={() => setStepCompleted("forth")}>Submit</Button>
+            </div>
           </StepBody>
         </Stepper.Step>
       </Stepper.Steps>
@@ -84,7 +86,7 @@ const Wrapper = () => {
 
 export const Primary = () => (
   <StepperProvider>
-    <Wrapper />
+    <ExampleStepper />
   </StepperProvider>
 );
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

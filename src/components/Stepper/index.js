@@ -8,7 +8,7 @@ import {
 import { useStepper, StepperProvider } from "./context";
 
 const Stepper = ({ children }) => {
-  const { currentStep, steps } = useStepper();
+  const { currentStep, goToStep, steps, checkStepCompleted } = useStepper();
   return (
     <StyledStepperContainer>
       <StyledStepperHeader>
@@ -16,9 +16,16 @@ const Stepper = ({ children }) => {
           ? steps.map((step, index) => (
               <StyledStepperHeaderItem
                 key={step.id}
-                className={currentStep >= index ? "completed" : ""}
+                className={
+                  currentStep >= index || checkStepCompleted(step.id)
+                    ? "completed"
+                    : ""
+                }
+                onClick={() => goToStep(step.id)}
               >
-                <div className="step-counter">{index + 1}</div>
+                <div className="step-counter">
+                  {(checkStepCompleted(step.id) && "Done") || index + 1}
+                </div>
                 <div className="step-name">{step.name}</div>
               </StyledStepperHeaderItem>
             ))
