@@ -1,8 +1,9 @@
 name: Build and Deploy
-on: 
+on:
   push:
     branches:
       - master
+      - staging
     paths: ["src/stories/**", "src/components/**"] # Trigger the action only when files change in the folders defined here
 jobs:
   build-and-deploy:
